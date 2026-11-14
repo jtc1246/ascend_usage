@@ -22,6 +22,8 @@ Atlas 300I Duo / Ascend 310P3 的纯 C++ 使用示例。包含 AscendCL 运行�
 
 默认 CANN 路径为 `/usr/local/Ascend/ascend-toolkit/latest`。自定义或隔离安装时，通过 `CANN_HOME` 指定包含 `set_env.sh` 的目录。
 
+**如果机器目前只有驱动**，先阅读[纯 C++ 用户态编译环境安装](docs/USER-SPACE-INSTALL.md)。其中包含 CANN/310P ops 下载、SHA-256 校验、普通用户隔离安装、CMake venv 和环境检查脚本。
+
 ## 构建和运行
 
 ```bash
@@ -49,6 +51,7 @@ export BUILD_DIR="$PWD/demos/build"
 
 ## 文档
 
+- [只有驱动时的用户态编译环境安装](docs/USER-SPACE-INSTALL.md)
 - [详细使用说明、关键实现和注意事项](docs/CPP-DEVELOPMENT-GUIDE.md)
 - [最终双 Device 运行记录](logs/run-final-both-devices.log)
 - [第三方样例来源与许可说明](THIRD_PARTY_NOTICES.md)

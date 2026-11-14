@@ -1,0 +1,78 @@
+[Toolkit] [20261114-11:38:29] [INFO] LogFile:/home/jtc/huawei_driver/acceptance/work/cann-installer-home/var/log/ascend_seclog/ascend_toolkit_install.log
+[Toolkit] [20261114-11:38:29] [INFO] /home/jtc/huawei_driver/acceptance/work/cann-installer-home/Ascend/ascend_cann_install.info exists !
+[Toolkit] [20261114-11:38:29] [INFO] The old files will be moved in /home/jtc/huawei_driver/acceptance/work/cann-installer-home/Ascend/20261114_113829 , and a new /home/jtc/huawei_driver/acceptance/work/cann-installer-home/Ascend/ascend_cann_install.info file will be generated.
+[Toolkit] [20261114-11:38:29] [INFO] install start
+[Toolkit] [20261114-11:38:29] [INFO] The installation path is /home/jtc/huawei_driver/acceptance/work/ascend-toolkit-full.
+[Toolkit] [20261114-11:38:29] [INFO] install package cann-ge-executor_9.0.0_linux-x86_64.run start
+[Toolkit] [20261114-11:38:30] [INFO] cann-ge-executor_9.0.0_linux-x86_64.run --full --quiet --nox11 install success
+[Toolkit] [20261114-11:38:30] [INFO] install package cann-ge-compiler_9.0.0_linux-x86_64.run start
+[Toolkit] [20261114-11:38:32] [INFO] cann-ge-compiler_9.0.0_linux-x86_64.run --full --pylocal --quiet --nox11 install success
+[Toolkit] [20261114-11:38:32] [INFO] install package cann-npu-runtime_9.0.0_linux-x86_64.run start
+[Toolkit] [20261114-11:38:35] [INFO] cann-npu-runtime_9.0.0_linux-x86_64.run --full --quiet --nox11 install success
+[Toolkit] [20261114-11:38:35] [INFO] install package cann-asc-devkit_9.0.0_linux-x86_64.run start
+[Toolkit] [20261114-11:38:36] [INFO] cann-asc-devkit_9.0.0_linux-x86_64.run --full --quiet --nox11 install success
+[Toolkit] [20261114-11:38:36] [INFO] install package cann-metadef_9.0.0_linux-x86_64.run start
+[Toolkit] [20261114-11:38:37] [INFO] cann-metadef_9.0.0_linux-x86_64.run --full --quiet --nox11 install success
+[Toolkit] [20261114-11:38:37] [INFO] install package cann-opbase_9.0.0_linux-x86_64.run start
+[Toolkit] [20261114-11:38:38] [INFO] cann-opbase_9.0.0_linux-x86_64.run --full --quiet --nox11 install success
+[Toolkit] [20261114-11:38:38] [INFO] install package cann-oam-tools_9.0.0_linux-x86_64.run start
+[Toolkit] [20261114-11:38:43] [INFO] cann-oam-tools_9.0.0_linux-x86_64.run --full --quiet --nox11 install success
+[Toolkit] [20261114-11:38:43] [INFO] install package cann-asc-tools_9.0.0_linux-x86_64.run start
+/home/jtc/huawei_driver/acceptance/work/cann-installer-home/selfgz37776513276/share/info/asc-tools/script/run_asc-tools_install.sh: line 34: /home/jtc/var/log/ascend_seclog/ascend_install.log: No such file or directory
+/home/jtc/huawei_driver/acceptance/work/cann-installer-home/selfgz37776513276/share/info/asc-tools/script/run_asc-tools_install.sh: line 41: /home/jtc/var/log/ascend_seclog/ascend_install.log: No such file or directory
+[Toolkit] [20261114-11:38:45] [INFO] cann-asc-tools_9.0.0_linux-x86_64.run --full --pylocal --quiet --nox11 install success
+[Toolkit] [20261114-11:38:45] [INFO] install package cann-aoe_9.0.0_linux-x86_64.run start
+[Toolkit] [20261114-11:38:46] [INFO] cann-aoe_9.0.0_linux-x86_64.run --full --quiet --nox11 install success
+[Toolkit] [20261114-11:38:46] [INFO] install package cann-ncs_9.0.0_linux-x86_64.run start
+[Toolkit] [20261114-11:38:47] [INFO] cann-ncs_9.0.0_linux-x86_64.run --full --quiet --nox11 install success
+[Toolkit] [20261114-11:38:47] [INFO] install package cann-graph-autofusion_9.0.0_linux-x86_64.run start
+[Toolkit] [20261114-11:38:47] [INFO] cann-graph-autofusion_9.0.0_linux-x86_64.run --full --pylocal --quiet --nox11 install success
+[Toolkit] [20261114-11:38:47] [INFO] install package cann-bisheng-compiler_9.0.0_linux-x86_64.run start
+[Toolkit] [20261114-11:38:52] [INFO] cann-bisheng-compiler_9.0.0_linux-x86_64.run --full --quiet --nox11 install success
+[Toolkit] [20261114-11:38:52] [INFO] install package cann-tbe-tik_9.0.0_linux-x86_64.run start
+[Toolkit] [20261114-11:38:59] [INFO] cann-tbe-tik_9.0.0_linux-x86_64.run --full --quiet --nox11 install success
+[Toolkit] [20261114-11:38:59] [INFO] install package cann-dflow-executor_9.0.0_linux-x86_64.run start
+[Toolkit] [20261114-11:39:00] [INFO] cann-dflow-executor_9.0.0_linux-x86_64.run --full --pylocal --quiet --nox11 install success
+[Toolkit] [20261114-11:39:00] [INFO] install package cann-acl-extend_9.0.0_linux-x86_64.run start
+[Toolkit] [20261114-11:39:01] [INFO] cann-acl-extend_9.0.0_linux-x86_64.run --full --quiet --nox11 install success
+[Toolkit] [20261114-11:39:01] [INFO] install package cann-pto-isa_9.0.0_linux-x86_64.run start
+[Toolkit] [20261114-11:39:01] [INFO] cann-pto-isa_9.0.0_linux-x86_64.run --full --quiet --nox11 install success
+[Toolkit] [20261114-11:39:01] [INFO] install package mindstudio-profiler_26.0.0_x86_64.run start
+[Toolkit] [20261114-11:39:02] [INFO] mindstudio-profiler_26.0.0_x86_64.run --install --quiet --nox11 install success
+[Toolkit] [20261114-11:39:02] [INFO] install package mindstudio-profiler-tools-interface_26.0.0_x86_64.run start
+[Toolkit] [20261114-11:39:04] [INFO] mindstudio-profiler-tools-interface_26.0.0_x86_64.run --install --quiet --nox11 install success
+[Toolkit] [20261114-11:39:04] [INFO] install package mindstudio-memscope_26.0.0_x86_64.run start
+[Toolkit] [20261114-11:39:04] [INFO] mindstudio-memscope_26.0.0_x86_64.run --install --quiet --nox11 install success
+[Toolkit] [20261114-11:39:04] [INFO] install package mindstudio-service-profiler_26.0.0_x86_64.run start
+[Toolkit] [20261114-11:39:04] [INFO] mindstudio-service-profiler_26.0.0_x86_64.run --install --quiet --nox11 install success
+[Toolkit] [20261114-11:39:05] [INFO] install package ascend-mindstudio-operator-tools_26.0.0_x86_64.run start
+[Toolkit] [20261114-11:39:08] [INFO] ascend-mindstudio-operator-tools_26.0.0_x86_64.run --install --quiet --nox11 install success
+[Toolkit] [20261114-11:39:08] [INFO] install package mindstudio-TX_26.0.0_x86_64.run start
+[Toolkit] [20261114-11:39:08] [INFO] mindstudio-TX_26.0.0_x86_64.run --install --quiet --nox11 install success
+[Toolkit] [20261114-11:39:08] [INFO] install package mindstudio-accucmp_26.0.0_linux_x86_64.run start
+[Toolkit] [20261114-11:39:08] [INFO] mindstudio-accucmp_26.0.0_linux_x86_64.run --install --quiet --nox11 install success
+[Toolkit] [20261114-11:39:08] [INFO] install package mindstudio-transplt_26.0.0_linux_x86_64.run start
+[Toolkit] [20261114-11:39:08] [INFO] mindstudio-transplt_26.0.0_linux_x86_64.run --install --quiet --nox11 install success
+[Toolkit] [20261114-11:39:08] [INFO] install package pyACL_9.0.0_linux-x86_64.run start
+[Toolkit] [20261114-11:39:08] [INFO] pyACL_9.0.0_linux-x86_64.run --full --quiet --nox11 install success
+[Toolkit] [20261114-11:39:08] [INFO] install package cann-simulator_9.0.0_linux-x86_64.run start
+[Toolkit] [20261114-11:39:12] [INFO] cann-simulator_9.0.0_linux-x86_64.run --full --pylocal --quiet --nox11 install success
+[Toolkit] [20261114-11:39:12] [INFO] install package cann-hcomm_9.0.0_linux-x86_64.run start
+[Toolkit] [20261114-11:39:15] [INFO] cann-hcomm_9.0.0_linux-x86_64.run --full --pylocal --quiet --nox11 install success
+[Toolkit] [20261114-11:39:15] [INFO] install package ascendnpu-ir_1.1.0_linux-x86.run start
+[Toolkit] [20261114-11:39:19] [INFO] ascendnpu-ir_1.1.0_linux-x86.run --full --quiet --nox11 install success
+[Toolkit] [20261114-11:39:19] [INFO] install package test-ops_9.0.0_linux.run start
+[Toolkit] [20261114-11:39:19] [INFO] test-ops_9.0.0_linux.run --full --quiet --nox11 install success
+[Toolkit] [20261114-11:39:19] [INFO] Write Install_Path to /home/jtc/huawei_driver/acceptance/work/cann-installer-home/Ascend/ascend_cann_install.info.
+[Toolkit] [20261114-11:39:19] [INFO] Write Toolkit_InstallPath to /home/jtc/huawei_driver/acceptance/work/cann-installer-home/Ascend/ascend_cann_install.info.
+
+
+===========
+= Summary =
+===========
+
+Driver:   Installed in /usr/local/Ascend/driver.
+Toolkit:  Ascend-cann-toolkit_9.0.0_linux-x86_64 install success, installed in /home/jtc/huawei_driver/acceptance/work/ascend-toolkit-full.
+
+Please make sure that the environment variables have been configured.
+-  To take effect for current user, you can exec command below: source /home/jtc/huawei_driver/acceptance/work/ascend-toolkit-full/cann/set_env.sh or add "source /home/jtc/huawei_driver/acceptance/work/ascend-toolkit-full/cann/set_env.sh" to ~/.bashrc.

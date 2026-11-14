@@ -1,0 +1,36 @@
+[ops_310p] [20261114-11:58:51] [INFO] change umask 0027
+[ops_310p] [20261114-11:58:51] [INFO] touch /home/jtc/huawei_driver/acceptance/work/cann-installer-home/var/log/ascend_seclog/ascend_ops_310p_install.log
+[ops_310p] [20261114-11:58:51] [INFO] LogFile:/home/jtc/huawei_driver/acceptance/work/cann-installer-home/var/log/ascend_seclog/ascend_ops_310p_install.log
+[ops_310p] [20261114-11:58:51] [INFO] install start
+[ops_310p] [20261114-11:58:51] [INFO] The installation path is /home/jtc/huawei_driver/acceptance/work/ascend-toolkit-full.
+[ops_310p] [20261114-11:58:51] [INFO] install package cann-310p-ops-legacy_9.0.0_linux-x86_64.run start
+[ops_310p] [20261114-11:59:32] [INFO] cann-310p-ops-legacy_9.0.0_linux-x86_64.run --full --quiet --nox11 install success
+[ops_310p] [20261114-11:59:32] [INFO] install package cann-opbase_9.0.0_linux-x86_64.run start
+[ops_310p] [20261114-11:59:33] [INFO] cann-opbase_9.0.0_linux-x86_64.run --full --quiet --nox11 install success
+[ops_310p] [20261114-11:59:33] [INFO] install package cann-hixl_9.0.0_linux-x86_64.run start
+[ops_310p] [20261114-11:59:35] [INFO] cann-hixl_9.0.0_linux-x86_64.run --full --pylocal --quiet --nox11 install success
+[ops_310p] [20261114-11:59:35] [INFO] install package cann-hccl_9.0.0_linux-x86_64.run start
+[ops_310p] [20261114-11:59:36] [INFO] cann-hccl_9.0.0_linux-x86_64.run --full --quiet --nox11 install success
+[ops_310p] [20261114-11:59:36] [INFO] install package cann-dvpp_9.0.0_linux-x86_64.run start
+[ops_310p] [20261114-11:59:37] [INFO] cann-dvpp_9.0.0_linux-x86_64.run --full --quiet --nox11 install success
+[ops_310p] [20261114-11:59:37] [INFO] install package cann-310p-ops-math_9.0.0_linux-x86_64.run start
+[ops_310p] [20261114-11:59:39] [INFO] cann-310p-ops-math_9.0.0_linux-x86_64.run --full --quiet --nox11 install success
+[ops_310p] [20261114-11:59:39] [INFO] install package cann-310p-ops-nn_9.0.0_linux-x86_64.run start
+[ops_310p] [20261114-11:59:42] [INFO] cann-310p-ops-nn_9.0.0_linux-x86_64.run --full --quiet --nox11 install success
+[ops_310p] [20261114-11:59:42] [INFO] install package cann-310p-ops-cv_9.0.0_linux-x86_64.run start
+[ops_310p] [20261114-11:59:43] [INFO] cann-310p-ops-cv_9.0.0_linux-x86_64.run --full --quiet --nox11 install success
+[ops_310p] [20261114-11:59:43] [INFO] install package cann-310p-ops-transformer_9.0.0_linux-x86_64.run start
+[ops_310p] [20261114-11:59:47] [INFO] cann-310p-ops-transformer_9.0.0_linux-x86_64.run --full --quiet --nox11 install success
+[ops_310p] [20261114-11:59:47] [INFO] install package cann-310p-ops-ras_9.0.0_linux-x86_64.run start
+[ops_310p] [20261114-11:59:48] [INFO] cann-310p-ops-ras_9.0.0_linux-x86_64.run --full --quiet --nox11 install success
+
+
+===========
+= Summary =
+===========
+
+Driver:    Installed in /usr/local/Ascend/driver.
+ops_310p:  Ascend-cann-310p-ops_9.0.0_linux-x86_64 install success, installed in /home/jtc/huawei_driver/acceptance/work/ascend-toolkit-full.
+
+Please make sure that the environment variables have been configured.
+-  To take effect for current user, you can exec command below: source /home/jtc/huawei_driver/acceptance/work/ascend-toolkit-full/cann/set_env.sh or add "source /home/jtc/huawei_driver/acceptance/work/ascend-toolkit-full/cann/set_env.sh" to ~/.bashrc.

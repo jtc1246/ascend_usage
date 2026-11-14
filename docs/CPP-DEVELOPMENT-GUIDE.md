@@ -18,6 +18,8 @@
 
 ## 2. 环境准备
 
+如果当前机器只有驱动，先按[纯 C++ 用户态编译环境安装](USER-SPACE-INSTALL.md)准备 CANN、310P ops、Ascend C 编译器和 CMake。
+
 需要：
 
 1. 已安装驱动，普通用户对设备有访问权限，`npu-smi info` 能正常显示设备；
