@@ -1,0 +1,6 @@
+-- Configuring done (0.1s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/jtc/huawei_driver/development/demos/build
+[ 50%] Linking CXX executable acl_gemm_demo
+[100%] Built target acl_gemm_demo
+ACLNN FP16 MatMul demo: device=0 shape=32x32x32 workspace=0 C[0]=0.0 C[last]=46.5 result=PASS

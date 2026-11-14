@@ -1,0 +1,4 @@
+[ 50%] Building CXX object CMakeFiles/acl_gemm_demo.dir/acl_gemm_demo.cpp.o
+[100%] Linking CXX executable acl_gemm_demo
+[100%] Built target acl_gemm_demo
+ERROR: create GEMM handle failed, aclError=100024

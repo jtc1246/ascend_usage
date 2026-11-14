@@ -1,0 +1,4 @@
+ACL memory demo: device=0 elements=1024 first=1 last=3070 result=PASS
+Ascend C Add demo: device=0 elements=16384 z[0]=0.00 z[last]=6.00 result=PASS
+ACL memory demo: device=1 elements=1024 first=1 last=3070 result=PASS
+Ascend C Add demo: device=1 elements=16384 z[0]=0.00 z[last]=6.00 result=PASS

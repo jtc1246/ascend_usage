@@ -1,0 +1,147 @@
+-- The CXX compiler identification is GNU 11.5.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done (0.2s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/jtc/huawei_driver/development/demos/build-verified
+[  2%] Creating directories for 'ascendc_add_kernel_precompile'
+[  5%] Building CXX object CMakeFiles/acl_gemm_demo.dir/acl_gemm_demo.cpp.o
+[  7%] Building CXX object CMakeFiles/acl_memory_demo.dir/acl_memory_demo.cpp.o
+[ 10%] No download step for 'ascendc_add_kernel_precompile'
+[ 12%] No update step for 'ascendc_add_kernel_precompile'
+[ 15%] No patch step for 'ascendc_add_kernel_precompile'
+[ 17%] Performing configure step for 'ascendc_add_kernel_precompile'
+-- The C compiler identification is GNU 11.5.0
+[ 20%] Linking CXX executable acl_memory_demo
+[ 22%] Linking CXX executable acl_gemm_demo
+-- The CXX compiler identification is GNU 11.5.0
+-- Detecting C compiler ABI info
+[ 22%] Built target acl_memory_demo
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+[ 22%] Built target acl_gemm_demo
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done (0.2s)
+-- Generating done (0.0s)
+CMake Warning (unused-cli):
+  Manually-specified variables were not used by the project:
+
+    DYNAMIC_MODE
+    INCLUDE_DIR
+
+
+-- Build files have been written to: /home/jtc/huawei_driver/development/demos/build-verified/ascendc_add_kernel_precompile-prefix/src/ascendc_add_kernel_precompile-build
+[ 25%] Performing build step for 'ascendc_add_kernel_precompile'
+[100%] Building CXX object CMakeFiles/precompile_obj.dir/home/jtc/huawei_driver/development/demos/ascendc_add_kernel.cpp.o
+[100%] Built target precompile_obj
+[100%] Built target check_src_template
+[ 27%] No install step for 'ascendc_add_kernel_precompile'
+[ 30%] Completed 'ascendc_add_kernel_precompile'
+[ 30%] Built target ascendc_add_kernel_precompile
+[ 32%] Creating directories for 'ascendc_add_kernel_preprocess'
+[ 35%] No download step for 'ascendc_add_kernel_preprocess'
+[ 37%] No update step for 'ascendc_add_kernel_preprocess'
+[ 40%] No patch step for 'ascendc_add_kernel_preprocess'
+[ 42%] Performing configure step for 'ascendc_add_kernel_preprocess'
+-- The C compiler identification is GNU 11.5.0
+-- The CXX compiler identification is GNU 11.5.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done (0.2s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/jtc/huawei_driver/development/demos/build-verified/ascendc_add_kernel_preprocess-prefix/src/ascendc_add_kernel_preprocess-build
+[ 45%] Performing build step for 'ascendc_add_kernel_preprocess'
+[ 50%] Building CXX object CMakeFiles/preprocess_obj.dir/home/jtc/huawei_driver/development/demos/ascendc_add_kernel.cpp.o
+[100%] Building CXX object CMakeFiles/m200_obj.dir/home/jtc/huawei_driver/development/demos/ascendc_add_kernel.cpp.o
+[100%] Built target preprocess_obj
+[100%] Built target m200_obj
+/home/jtc/huawei_driver/acceptance/work/ascend-toolkit-full/cann-9.0.0/x86_64-linux/ccec_compiler/bin/ld.lld -m aicorelinux -Ttext=0 /home/jtc/huawei_driver/development/demos/build-verified/ascendc_add_kernel_preprocess-prefix/src/ascendc_add_kernel_preprocess-build/CMakeFiles/m200_obj.dir/home/jtc/huawei_driver/development/demos/ascendc_add_kernel.cpp.o -o /home/jtc/huawei_driver/development/demos/build-verified/ascendc_add_kernel_preprocess-prefix/src/ascendc_add_kernel_preprocess-build/CMakeFiles/m200_obj.dir/home/jtc/huawei_driver/development/demos/ascendc_add_kernel.cpp.o[100%] Built target merge_m200_obj_text
+[100%] Built target _host_cpp
+[ 47%] No install step for 'ascendc_add_kernel_preprocess'
+[ 50%] Completed 'ascendc_add_kernel_preprocess'
+[ 50%] Built target ascendc_add_kernel_preprocess
+[ 52%] Creating directories for 'ascendc_add_kernel_aic_device'
+[ 55%] Creating directories for 'ascendc_add_kernel_aiv_device'
+[ 57%] No download step for 'ascendc_add_kernel_aic_device'
+[ 60%] No download step for 'ascendc_add_kernel_aiv_device'
+[ 62%] No update step for 'ascendc_add_kernel_aic_device'
+[ 65%] No update step for 'ascendc_add_kernel_aiv_device'
+[ 70%] No patch step for 'ascendc_add_kernel_aic_device'
+[ 70%] No patch step for 'ascendc_add_kernel_aiv_device'
+[ 72%] Performing configure step for 'ascendc_add_kernel_aiv_device'
+[ 75%] Performing configure step for 'ascendc_add_kernel_aic_device'
+-- The C compiler identification is GNU 11.5.0
+-- The C compiler identification is GNU 11.5.0
+-- The CXX compiler identification is GNU 11.5.0
+-- The CXX compiler identification is GNU 11.5.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Configuring done (0.2s)
+-- Detecting CXX compile features - done
+-- Generating done (0.0s)
+CMake Warning (unused-cli):
+  Manually-specified variables were not used by the project:
+
+    BUILD_MODE
+
+
+-- Build files have been written to: /home/jtc/huawei_driver/development/demos/build-verified/ascendc_add_kernel_aiv_device-prefix/src/ascendc_add_kernel_aiv_device-build
+-- Configuring done (0.2s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/jtc/huawei_driver/development/demos/build-verified/ascendc_add_kernel_aic_device-prefix/src/ascendc_add_kernel_aic_device-build
+[ 77%] Performing build step for 'ascendc_add_kernel_aiv_device'
+[ 80%] Performing build step for 'ascendc_add_kernel_aic_device'
+[ 82%] No install step for 'ascendc_add_kernel_aiv_device'
+[ 85%] Completed 'ascendc_add_kernel_aiv_device'
+[100%] Building CXX object CMakeFiles/device_aic_obj.dir/home/jtc/huawei_driver/development/demos/build-verified/auto_gen/ascendc_add_kernel/auto_gen_ascendc_add_kernel.cpp.o
+[ 85%] Built target ascendc_add_kernel_aiv_device
+[100%] Built target device_aic_obj
+/home/jtc/huawei_driver/acceptance/work/ascend-toolkit-full/cann-9.0.0/x86_64-linux/ccec_compiler/bin/ld.lld  -m aicorelinux -r  -Ttext=0 /home/jtc/huawei_driver/development/demos/build-verified/ascendc_add_kernel_aic_device-prefix/src/ascendc_add_kernel_aic_device-build/CMakeFiles/device_aic_obj.dir/home/jtc/huawei_driver/development/demos/build-verified/auto_gen/ascendc_add_kernel/auto_gen_ascendc_add_kernel.cpp.o -static -o /home/jtc/huawei_driver/development/demos/build-verified/ascendc_add_kernel_aic_device_dir/device_aic.o
+[100%] Built target merge_aic_device_obj
+[ 87%] No install step for 'ascendc_add_kernel_aic_device'
+[ 90%] Completed 'ascendc_add_kernel_aic_device'
+[ 90%] Built target ascendc_add_kernel_aic_device
+/home/jtc/huawei_driver/acceptance/work/ascend-toolkit-full/cann-9.0.0/x86_64-linux/ccec_compiler/bin/ld.lld -x -m aicorelinux   -Ttext=0 /home/jtc/huawei_driver/development/demos/build-verified/ascendc_add_kernel_aic_device_dir/device_aic.o -static -o /home/jtc/huawei_driver/development/demos/build-verified/ascendc_add_kernel_merge_obj_dir/device_aic.o
+[ 90%] Built target ascendc_add_kernel_merge_obj
+[ 92%] Building CXX object CMakeFiles/ascendc_add_kernel_host_stub_obj.dir/auto_gen/ascendc_add_kernel/host_stub.cpp.o
+[ 92%] Built target ascendc_add_kernel_host_stub_obj
+[ 95%] Linking CXX static library lib/libascendc_add_kernel.a
+/home/jtc/huawei_driver/acceptance/work/ascend-toolkit-full/cann-9.0.0/bin/ascendc_pack_kernel /home/jtc/huawei_driver/development/demos/build-verified/CMakeFiles/ascendc_add_kernel_host_stub_obj.dir/auto_gen/ascendc_add_kernel/host_stub.cpp.o /home/jtc/huawei_driver/development/demos/build-verified/ascendc_add_kernel_merge_obj_dir/device_aic.o 2 /home/jtc/huawei_driver/development/demos/build-verified/CMakeFiles/ascendc_add_kernel_host_stub_obj.dir/auto_gen/ascendc_add_kernel/host_stub.cpp.o
+[ 95%] Built target ascendc_add_kernel
+[ 97%] Building CXX object CMakeFiles/ascendc_add_demo.dir/ascendc_add_demo.cpp.o
+[100%] Linking CXX executable ascendc_add_demo
+[100%] Built target ascendc_add_demo

@@ -1,0 +1,55 @@
+-- Configuring done (0.1s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/jtc/huawei_driver/development/demos/build
+[  5%] Built target acl_memory_demo
+[ 12%] Built target acl_gemm_demo
+[ 12%] Performing build step for 'ascendc_add_kernel_precompile'
+[100%] Building CXX object CMakeFiles/precompile_obj.dir/home/jtc/huawei_driver/development/demos/ascendc_add_kernel.cpp.o
+[100%] Built target precompile_obj
+[100%] Built target check_src_template
+[ 15%] No install step for 'ascendc_add_kernel_precompile'
+[ 17%] Completed 'ascendc_add_kernel_precompile'
+[ 30%] Built target ascendc_add_kernel_precompile
+[ 32%] Performing build step for 'ascendc_add_kernel_preprocess'
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/jtc/huawei_driver/development/demos/build/ascendc_add_kernel_preprocess-prefix/src/ascendc_add_kernel_preprocess-build
+[ 50%] Building CXX object CMakeFiles/preprocess_obj.dir/home/jtc/huawei_driver/development/demos/ascendc_add_kernel.cpp.o
+[100%] Building CXX object CMakeFiles/m200_obj.dir/home/jtc/huawei_driver/development/demos/ascendc_add_kernel.cpp.o
+[100%] Built target preprocess_obj
+[100%] Built target m200_obj
+/home/jtc/huawei_driver/acceptance/work/ascend-toolkit-full/cann-9.0.0/x86_64-linux/ccec_compiler/bin/ld.lld -m aicorelinux -Ttext=0 /home/jtc/huawei_driver/development/demos/build/ascendc_add_kernel_preprocess-prefix/src/ascendc_add_kernel_preprocess-build/CMakeFiles/m200_obj.dir/home/jtc/huawei_driver/development/demos/ascendc_add_kernel.cpp.o -o /home/jtc/huawei_driver/development/demos/build/ascendc_add_kernel_preprocess-prefix/src/ascendc_add_kernel_preprocess-build/CMakeFiles/m200_obj.dir/home/jtc/huawei_driver/development/demos/ascendc_add_kernel.cpp.o[100%] Built target merge_m200_obj_text
+[100%] Built target _host_cpp
+[ 35%] No install step for 'ascendc_add_kernel_preprocess'
+[ 37%] Completed 'ascendc_add_kernel_preprocess'
+[ 50%] Built target ascendc_add_kernel_preprocess
+[ 52%] Performing configure step for 'ascendc_add_kernel_aic_device'
+[ 55%] Performing configure step for 'ascendc_add_kernel_aiv_device'
+-- Configuring done (0.0s)
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/jtc/huawei_driver/development/demos/build/ascendc_add_kernel_aiv_device-prefix/src/ascendc_add_kernel_aiv_device-build
+-- Generating done (0.0s)
+-- Build files have been written to: /home/jtc/huawei_driver/development/demos/build/ascendc_add_kernel_aic_device-prefix/src/ascendc_add_kernel_aic_device-build
+[ 57%] Performing build step for 'ascendc_add_kernel_aiv_device'
+[ 60%] Performing build step for 'ascendc_add_kernel_aic_device'
+[ 62%] No install step for 'ascendc_add_kernel_aiv_device'
+[ 65%] Completed 'ascendc_add_kernel_aiv_device'
+[100%] Building CXX object CMakeFiles/device_aic_obj.dir/home/jtc/huawei_driver/development/demos/build/auto_gen/ascendc_add_kernel/auto_gen_ascendc_add_kernel.cpp.o
+[ 75%] Built target ascendc_add_kernel_aiv_device
+[100%] Built target device_aic_obj
+/home/jtc/huawei_driver/acceptance/work/ascend-toolkit-full/cann-9.0.0/x86_64-linux/ccec_compiler/bin/ld.lld  -m aicorelinux -r  -Ttext=0 /home/jtc/huawei_driver/development/demos/build/ascendc_add_kernel_aic_device-prefix/src/ascendc_add_kernel_aic_device-build/CMakeFiles/device_aic_obj.dir/home/jtc/huawei_driver/development/demos/build/auto_gen/ascendc_add_kernel/auto_gen_ascendc_add_kernel.cpp.o -static -o /home/jtc/huawei_driver/development/demos/build/ascendc_add_kernel_aic_device_dir/device_aic.o
+[100%] Built target merge_aic_device_obj
+[ 77%] No install step for 'ascendc_add_kernel_aic_device'
+[ 80%] Completed 'ascendc_add_kernel_aic_device'
+[ 90%] Built target ascendc_add_kernel_aic_device
+/home/jtc/huawei_driver/acceptance/work/ascend-toolkit-full/cann-9.0.0/x86_64-linux/ccec_compiler/bin/ld.lld -x -m aicorelinux   -Ttext=0 /home/jtc/huawei_driver/development/demos/build/ascendc_add_kernel_aic_device_dir/device_aic.o -static -o /home/jtc/huawei_driver/development/demos/build/ascendc_add_kernel_merge_obj_dir/device_aic.o
+[ 90%] Built target ascendc_add_kernel_merge_obj
+[ 92%] Building CXX object CMakeFiles/ascendc_add_kernel_host_stub_obj.dir/auto_gen/ascendc_add_kernel/host_stub.cpp.o
+[ 92%] Built target ascendc_add_kernel_host_stub_obj
+[ 95%] Linking CXX static library lib/libascendc_add_kernel.a
+/home/jtc/huawei_driver/acceptance/work/ascend-toolkit-full/cann-9.0.0/bin/ascendc_pack_kernel /home/jtc/huawei_driver/development/demos/build/CMakeFiles/ascendc_add_kernel_host_stub_obj.dir/auto_gen/ascendc_add_kernel/host_stub.cpp.o /home/jtc/huawei_driver/development/demos/build/ascendc_add_kernel_merge_obj_dir/device_aic.o 2 /home/jtc/huawei_driver/development/demos/build/CMakeFiles/ascendc_add_kernel_host_stub_obj.dir/auto_gen/ascendc_add_kernel/host_stub.cpp.o
+[ 95%] Built target ascendc_add_kernel
+[ 97%] Building CXX object CMakeFiles/ascendc_add_demo.dir/ascendc_add_demo.cpp.o
+[100%] Linking CXX executable ascendc_add_demo
+[100%] Built target ascendc_add_demo

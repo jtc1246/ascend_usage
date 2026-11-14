@@ -1,0 +1,12 @@
+-- Configuring done (0.1s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/jtc/huawei_driver/development/demos/build
+[ 50%] Building CXX object CMakeFiles/acl_gemm_demo.dir/acl_gemm_demo.cpp.o
+[100%] Linking CXX executable acl_gemm_demo
+/usr/bin/ld: CMakeFiles/acl_gemm_demo.dir/acl_gemm_demo.cpp.o: undefined reference to symbol 'aclCreateTensor'
+/usr/bin/ld: /home/jtc/huawei_driver/acceptance/work/ascend-toolkit-full/cann-9.0.0/lib64/libnnopbase.so: error adding symbols: DSO missing from command line
+collect2: error: ld returned 1 exit status
+gmake[3]: *** [CMakeFiles/acl_gemm_demo.dir/build.make:100: acl_gemm_demo] Error 1
+gmake[2]: *** [CMakeFiles/Makefile2:147: CMakeFiles/acl_gemm_demo.dir/all] Error 2
+gmake[1]: *** [CMakeFiles/Makefile2:154: CMakeFiles/acl_gemm_demo.dir/rule] Error 2
+gmake: *** [Makefile:182: acl_gemm_demo] Error 2

@@ -1,0 +1,2 @@
+ACL memory demo: device=0 elements=1024 first=1 last=3070 result=PASS
+ERROR: create GEMM handle failed, aclError=100024

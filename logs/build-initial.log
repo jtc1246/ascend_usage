@@ -1,0 +1,64 @@
+/home/jtc/huawei_driver/acceptance/work/ascend-toolkit-full/cann-9.0.0/set_env.sh: line 48: LD_LIBRARY_PATH: unbound variable
+/home/jtc/huawei_driver/acceptance/work/ascend-toolkit-full/cann-9.0.0/set_env.sh: line 48: PYTHONPATH: unbound variable
+/home/jtc/huawei_driver/acceptance/work/ascend-toolkit-full/cann-9.0.0/set_env.sh: line 31: CMAKE_PREFIX_PATH: unbound variable
+-- The CXX compiler identification is GNU 11.5.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done (0.2s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/jtc/huawei_driver/development/demos/build
+[  2%] Building CXX object CMakeFiles/acl_memory_demo.dir/acl_memory_demo.cpp.o
+[  5%] Building CXX object CMakeFiles/acl_gemm_demo.dir/acl_gemm_demo.cpp.o
+[  7%] Creating directories for 'ascendc_add_kernel_precompile'
+In file included from /home/jtc/huawei_driver/development/demos/acl_memory_demo.cpp:1:
+/home/jtc/huawei_driver/development/demos/acl_check.h:3:10: fatal error: acl/acl.h: No such file or directory
+    3 | #include <acl/acl.h>
+      |          ^~~~~~~~~~~
+compilation terminated.
+In file included from /home/jtc/huawei_driver/development/demos/acl_gemm_demo.cpp:1:
+/home/jtc/huawei_driver/development/demos/acl_check.h:3:10: fatal error: acl/acl.h: No such file or directory
+    3 | #include <acl/acl.h>
+      |          ^~~~~~~~~~~
+compilation terminated.
+gmake[2]: *** [CMakeFiles/acl_memory_demo.dir/build.make:79: CMakeFiles/acl_memory_demo.dir/acl_memory_demo.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:115: CMakeFiles/acl_memory_demo.dir/all] Error 2
+gmake[1]: *** Waiting for unfinished jobs....
+gmake[2]: *** [CMakeFiles/acl_gemm_demo.dir/build.make:79: CMakeFiles/acl_gemm_demo.dir/acl_gemm_demo.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:147: CMakeFiles/acl_gemm_demo.dir/all] Error 2
+[ 10%] No download step for 'ascendc_add_kernel_precompile'
+[ 12%] No update step for 'ascendc_add_kernel_precompile'
+[ 15%] No patch step for 'ascendc_add_kernel_precompile'
+[ 17%] Performing configure step for 'ascendc_add_kernel_precompile'
+-- The C compiler identification is GNU 11.5.0
+-- The CXX compiler identification is GNU 11.5.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done (0.2s)
+-- Generating done (0.0s)
+CMake Warning (unused-cli):
+  Manually-specified variables were not used by the project:
+
+    DYNAMIC_MODE
+    INCLUDE_DIR
+
+
+-- Build files have been written to: /home/jtc/huawei_driver/development/demos/build/ascendc_add_kernel_precompile-prefix/src/ascendc_add_kernel_precompile-build
+[ 20%] Performing build step for 'ascendc_add_kernel_precompile'
+[100%] Building CXX object CMakeFiles/precompile_obj.dir/home/jtc/huawei_driver/development/demos/ascendc_add_kernel.cpp.o
+[100%] Built target precompile_obj
+[100%] Built target check_src_template
+[ 22%] No install step for 'ascendc_add_kernel_precompile'
+[ 25%] Completed 'ascendc_add_kernel_precompile'
+[ 25%] Built target ascendc_add_kernel_precompile
+gmake: *** [Makefile:136: all] Error 2

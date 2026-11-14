@@ -1,0 +1,17 @@
+# Build outputs
+demos/build/
+demos/build-*/
+build/
+
+# Compiled artifacts
+*.o
+*.a
+*.so
+
+# Local editor state
+.vscode/
+.idea/
+
+# Local credentials must not be committed
+*key*.txt
+*.pem
