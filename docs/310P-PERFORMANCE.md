@@ -2,7 +2,7 @@
 
 对 Atlas 300I Duo (双 310P3) 的算力、带宽、延迟、指令吞吐等硬件特性的实测记录。除标注"标称"外均为本机实测 (驱动 26.1.1, CANN 9.0.0, 2026-11)。时钟按 1.08GHz 折算周期数。
 
-测试代码在本机 (未入库): `/root/local_llm/npu_test/bandwidth` (带宽)、`/root/local_llm/tests/npu_vlat` (指令吞吐/延迟/启动开销)、`/root/local_llm/tests/npu_cube` (mmad 布局)、`/root/local_llm/tests/npu_l2` (片上缓存)、`/root/local_llm/tests/npu_api` (API 行为)、`/root/local_llm/tests/npu_p2p` (双芯互联/host 传输)、`/root/local_llm/tests/npu_sync` (同步原语延迟)。
+测试代码在本机 (未入库): `/root/local_llm/npu_test/bandwidth` (带宽)、`/root/local_llm/tests/npu_vlat` (指令吞吐/延迟/启动开销)、`/root/local_llm/tests/npu_cube` (mmad 布局)、`/root/local_llm/tests/npu_l2` (片上缓存)、`/root/local_llm/tests/npu_api` (API 行为)、`/root/local_llm/tests/npu_p2p` (双芯互联/host 传输)、`/root/local_llm/tests/npu_sync` (同步原语延迟)、`/root/local_llm/tests/npu_doorbell` (GM 标志位 doorbell / host 内存映射探测)。
 
 ## 1. 基本结构
 
@@ -69,6 +69,8 @@ fp32 乘加折算全片峰值仅 **~0.55 TFLOPS** (与 cube 差 128 倍)。各�
 | 同上, FAST_SYNC 流 (见下) | **~26 µs** (CPU 100%, 纯忙等) |
 | 同上, 默认流 + `aclrtStreamQuery` 自旋 | ~26 µs (与 FAST_SYNC 等价) |
 | 空流 sync / 空流 StreamQuery | 0.9 / 1.25 µs |
+| GM 标志位 doorbell 往返 (预下发自旋 kernel, 见下) | **~12.2 µs** (blockdim=8 全 block 轮询 ~15) |
+| 4B 同步 aclrtMemcpy 单独压测 | h2d 5.9 / d2h 6.1 µs |
 | 向量指令发射 (Level-0, isSetMask=false) | ~14 ns/调用 |
 | 同 V 管线内依赖链 | **0 停顿** (硬件保序, 与独立指令同速; 热循环 PIPE_V barrier 纯浪费) |
 | PIPE_ALL barrier (管线空闲时) | ~3 ns |
@@ -82,7 +84,9 @@ fp32 乘加折算全片峰值仅 **~0.55 TFLOPS** (与 cube 差 128 倍)。各�
 ### 同步原语 (host 侧, tests/npu_sync)
 
 - 频繁 sync 的场景 (如多卡同步点) 用 `aclrtCreateStreamWithConfig(&s, 0, ACL_STREAM_FAST_LAUNCH | ACL_STREAM_FAST_SYNC)` 建流: **FAST_SYNC 让 aclrtSynchronizeStream 变成纯忙等** (等价于自己写 StreamQuery 自旋循环), 单次 sync 从 64µs 降到 26µs; FAST_LAUNCH 对该指标无可测影响
-- **26µs 是 [launch + 执行 + 完成状态传播回 host] 的往返下限**, 与等待方式无关, 轮询再快也压不掉
+- **26µs 是 [launch + 执行 + 完成状态传播回 host] 的往返下限**, 只要走 runtime 的完成状态 (sync/StreamQuery) 就压不掉; 但 **kernel 自己写 GM 标志位可以绕开这条链路** (见下)。实测拆分表明 26µs 的大头在 [提交→设备侧派发→kernel 开跑] 的下行一侧: 只把"等完成"换成标志位轮询几乎无收益, 预下发 + 门自旋隐藏下发延迟才有收益
+- **GM 标志位 doorbell** (tests/npu_doorbell): 预先 launch 一个自旋 kernel (开头轮询 GM 序号), host 用 4B 同步 aclrtMemcpy 写命令/读响应, 往返 **12.2µs** (blockdim=8 全 block 轮询同一标志 15.0µs), 自旋 kernel 对标志位的响应时间接近 0。kernel 侧轮询必须 volatile 读 + 每次 dcci (见第 8 节第 11 条); 写标志位前 PipeBarrier\<PIPE_ALL\> 之后, 该 kernel 此前 MTE3 写出的 GM 数据对 host d2h 完整可见 (无需整 cache flush)
+- **host 内存映射 (zero-copy) 在 310P 完全不支持**: `aclrtHostMemMapCapabilities` 对所有引擎 (AIC/AIV/PCIEDMA/SDMA 等) 都返回 0, `aclrtHostRegister(MAPPED)` 报 207000, `aclrtHostGetDevicePointer` 对 aclrtMallocHost 内存返回成功但 devPtr=NULL (必须判空) — 标志位只能放设备 GM, host 侧轮询只能走同步 memcpy
 - **aclrtMemcpyAsync 的小拷贝 (4B~20KB) 每次有 ~290µs 的任务调度开销**, 比阻塞 sync 还慢几倍 — 不能用异步小拷贝做 doorbell/序号自旋这类模式; 小数据同步 aclrtMemcpy 反而只要 ~0.5µs
 - **同步 aclrtMemcpy (H2D/D2H) 不排队到 stream**: 会在已入队未执行的 kernel 之前落地, 覆盖其输入 (WAR 竞态); 对在用缓冲写入前必须先 sync。症状: 每个 build 内确定、跨 build 不同的"随机"差异
 
@@ -114,3 +118,4 @@ fp32 乘加折算全片峰值仅 **~0.55 TFLOPS** (与 cube 差 128 倍)。各�
 8. **Brcb 与 V 管线的依赖完全不保序, 前后都必须 PipeBarrier\<PIPE_ALL\> (PIPE_V 不够)**: 第 5 节"同 V 管线保序"对 Brcb 不成立, Brcb 读前序 V 写 / 后续 V 读 Brcb 输出都会撞旧值。症状: 低概率恰好 8 行一组 (= Brcb 一个 repeat) 用旧广播值, 位置随机, 源与 Brcb 相隔远时窗口极小可长期潜伏; 定位靠"坏行 8 行对齐"特征
 9. **向量单元会把 fp16 次正规数 flush 成 0** (如 scale 预除后掉入 2^-24~2^-15 区间的值); 需要小 fp16 常量时在 f32 域派生, 或在 host 侧把次正规钳 0 保持两端一致
 10. f32 Exp 对大正数溢出产生垃圾且 **垃圾 ×0 不保证得 0** (做 mask 乘之前要先 Mins 钳住); Ln(0) = -inf 会让后续差值变 NaN (前面先 Maxs(1e-30))。这类"数学上该是 0 的部分"只在真实数据分布下触发, 随机测试难覆盖
+11. **GM 标量自旋轮询必须 `__gm__ volatile` 指针读 + 每次读前 dcci** (`DataCacheCleanAndInvalid<T, CacheLine::SINGLE_CACHE_LINE>`, m200 用 2 参数版): 非 volatile 的 `GlobalTensor::GetValue` 轮询会被编译器把读提升出循环 (dcci intrinsic 不带 memory clobber), 加了 dcci 也永久卡死; 有 volatile 但无 dcci 则首轮冷 cache 侥幸通过、第二轮起一直读缓存旧值。写标志位同样要在写后 dcci 才对 host 可见
