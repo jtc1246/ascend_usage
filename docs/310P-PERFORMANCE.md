@@ -2,7 +2,7 @@
 
 对 Atlas 300I Duo (双 310P3) 的算力、带宽、延迟、指令吞吐等硬件特性的实测记录。除标注"标称"外均为本机实测 (驱动 26.1.1, CANN 9.0.0, 2026-11)。时钟按 1.08GHz 折算周期数。
 
-测试代码在本机 (未入库): `/root/local_llm/npu_test/bandwidth` (带宽)、`/root/local_llm/tests/npu_vlat` (指令吞吐/延迟/启动开销)、`/root/local_llm/tests/npu_cube` (mmad 布局)、`/root/local_llm/tests/npu_l2` (片上缓存)、`/root/local_llm/tests/npu_api` (API 行为)、`/root/local_llm/tests/npu_p2p` (双芯互联/host 传输)、`/root/local_llm/tests/npu_sync` (同步原语延迟)、`/root/local_llm/tests/npu_doorbell` (GM 标志位 doorbell / host 内存映射探测)。
+测试代码在本机 (未入库): `/root/local_llm/npu_test/bandwidth` (带宽)、`/root/local_llm/tests/npu_vlat` (指令吞吐/延迟/启动开销)、`/root/local_llm/tests/npu_cube` (mmad 布局)、`/root/local_llm/tests/npu_l2` (片上缓存)、`/root/local_llm/tests/npu_api` (API 行为)、`/root/local_llm/tests/npu_p2p` (双芯互联/host 传输)、`/root/local_llm/tests/npu_sync` (同步原语延迟)、`/root/local_llm/tests/npu_doorbell` (GM 标志位 doorbell / host 内存映射探测)、`/root/local_llm/tests/npu_bar` (PCIe BAR 窗口探测与 GM 扫描)、`/root/local_llm/tests/npu_bar_db` (全 BAR MMIO doorbell)。
 
 ## 1. 基本结构
 
@@ -70,6 +70,8 @@ fp32 乘加折算全片峰值仅 **~0.55 TFLOPS** (与 cube 差 128 倍)。各�
 | 同上, 默认流 + `aclrtStreamQuery` 自旋 | ~26 µs (与 FAST_SYNC 等价) |
 | 空流 sync / 空流 StreamQuery | 0.9 / 1.25 µs |
 | GM 标志位 doorbell 往返 (预下发自旋 kernel, 见下) | **~12.2 µs** (blockdim=8 全 block 轮询 ~15) |
+| 同上, 但 host 侧走 BAR MMIO 直读直写 (见下) | **~1.2 µs** |
+| BAR MMIO 直访 GM: CPU 4B 读 / 写 | 0.44 / 0.14 µs (写是 posted) |
 | 4B 同步 aclrtMemcpy 单独压测 | h2d 5.9 / d2h 6.1 µs |
 | 向量指令发射 (Level-0, isSetMask=false) | ~14 ns/调用 |
 | 同 V 管线内依赖链 | **0 停顿** (硬件保序, 与独立指令同速; 热循环 PIPE_V barrier 纯浪费) |
@@ -86,7 +88,8 @@ fp32 乘加折算全片峰值仅 **~0.55 TFLOPS** (与 cube 差 128 倍)。各�
 - 频繁 sync 的场景 (如多卡同步点) 用 `aclrtCreateStreamWithConfig(&s, 0, ACL_STREAM_FAST_LAUNCH | ACL_STREAM_FAST_SYNC)` 建流: **FAST_SYNC 让 aclrtSynchronizeStream 变成纯忙等** (等价于自己写 StreamQuery 自旋循环), 单次 sync 从 64µs 降到 26µs; FAST_LAUNCH 对该指标无可测影响
 - **26µs 是 [launch + 执行 + 完成状态传播回 host] 的往返下限**, 只要走 runtime 的完成状态 (sync/StreamQuery) 就压不掉; 但 **kernel 自己写 GM 标志位可以绕开这条链路** (见下)。实测拆分表明 26µs 的大头在 [提交→设备侧派发→kernel 开跑] 的下行一侧: 只把"等完成"换成标志位轮询几乎无收益, 预下发 + 门自旋隐藏下发延迟才有收益
 - **GM 标志位 doorbell** (tests/npu_doorbell): 预先 launch 一个自旋 kernel (开头轮询 GM 序号), host 用 4B 同步 aclrtMemcpy 写命令/读响应, 往返 **12.2µs** (blockdim=8 全 block 轮询同一标志 15.0µs), 自旋 kernel 对标志位的响应时间接近 0。kernel 侧轮询必须 volatile 读 + 每次 dcci (见第 8 节第 11 条); 写标志位前 PipeBarrier\<PIPE_ALL\> 之后, 该 kernel 此前 MTE3 写出的 GM 数据对 host d2h 完整可见 (无需整 cache flush)
-- **host 内存映射 (zero-copy) 在 310P 完全不支持**: `aclrtHostMemMapCapabilities` 对所有引擎 (AIC/AIV/PCIEDMA/SDMA 等) 都返回 0, `aclrtHostRegister(MAPPED)` 报 207000, `aclrtHostGetDevicePointer` 对 aclrtMallocHost 内存返回成功但 devPtr=NULL (必须判空) — 标志位只能放设备 GM, host 侧轮询只能走同步 memcpy
+- **host 内存映射 (zero-copy) 在 310P 完全不支持**: `aclrtHostMemMapCapabilities` 对所有引擎 (AIC/AIV/PCIEDMA/SDMA 等) 都返回 0, `aclrtHostRegister(MAPPED)` 报 207000, `aclrtHostGetDevicePointer` 对 aclrtMallocHost 内存返回成功但 devPtr=NULL (必须判空) — 标志位只能放设备 GM, host 侧轮询走同步 memcpy, 或反方向用 BAR 直访 (见下条)
+- **BAR MMIO 直访 GM** (tests/npu_bar, tests/npu_bar_db): 310P 的 PCIe 端点 (两颗芯共用一个, vendor 0x19e5) 暴露一个 **8GB 可预取 BAR** (sysfs resource4, 另有 WC 映射 resource4_wc), 实测映射**两颗芯 GM 的高物理地址段**各 ~1-3GB, 与 DMA 路径双向一致 (h2d 写入后 BAR 读到新值, kernel PIPE_ALL+dcci 写出后 BAR 也读到)。root 在宿主机对 resource4 放开权限 (chmod, sysfs 权限重启复位) 后用户态直接 mmap, CPU 一条 load/store 即同步读写 GM: 读 0.44µs (阻塞等响应)、写 0.14µs (posted); doorbell 两侧都换成 MMIO 后真实自旋 kernel 往返 **1.2µs** (与 NVIDIA zero-copy 映射内存同级, 等于把上一条缺失的能力自己补上了)。注意: BAR 偏移↔设备物理地址固定, 但 `aclrtMalloc` 的落点不可控 — 标志页要靠探测 (大量分配填 64 位随机标签 → 扫窗口找完整可见 4KB 页 → 写 nonce 经自己句柄回读确认所有权, 防多进程同时探测误认他人页面); 小体量分配大概率不落在可见区, 需准备 memcpy 回退路径。CPU 跨 BAR **读大块数据不可行** (每 8B 一次 0.44µs 往返), 大块传输仍走 DMA
 - **aclrtMemcpyAsync 的小拷贝 (4B~20KB) 每次有 ~290µs 的任务调度开销**, 比阻塞 sync 还慢几倍 — 不能用异步小拷贝做 doorbell/序号自旋这类模式; 小数据同步 aclrtMemcpy 反而只要 ~0.5µs
 - **同步 aclrtMemcpy (H2D/D2H) 不排队到 stream**: 会在已入队未执行的 kernel 之前落地, 覆盖其输入 (WAR 竞态); 对在用缓冲写入前必须先 sync。症状: 每个 build 内确定、跨 build 不同的"随机"差异
 
