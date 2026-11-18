@@ -56,6 +56,10 @@ export BUILD_DIR="$PWD/demos/build"
 - [最终双 Device 运行记录](logs/run-final-both-devices.log)
 - [第三方样例来源与许可说明](THIRD_PARTY_NOTICES.md)
 
+## 实际项目
+
+- [qwen3.8_27b_reference](https://github.com/jtc1246/qwen3.8_27b_reference)：基于本仓库环境与用法的完整实际项目，Qwen3.8-27B 在 310P 上的从零推理实现（W4A8、cube attention、双芯张量并行），实现说明见其 [docs/npu_impl.md](https://github.com/jtc1246/qwen3.8_27b_reference/blob/main/docs/npu_impl.md)。
+
 ## 官方资源
 
 - [CANN 文档中心](https://www.hiascend.com/document)
