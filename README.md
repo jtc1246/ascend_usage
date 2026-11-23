@@ -52,6 +52,7 @@ export BUILD_DIR="$PWD/demos/build"
 ## 文档
 
 - [只有驱动时的用户态编译环境安装](docs/USER-SPACE-INSTALL.md)
+- [宿主机运维清单: 重启/新卡接入的权限与 ECC 操作](docs/HOST-OPS.md)
 - [详细使用说明、关键实现和注意事项](docs/CPP-DEVELOPMENT-GUIDE.md)
 - [最终双 Device 运行记录](logs/run-final-both-devices.log)
 - [第三方样例来源与许可说明](THIRD_PARTY_NOTICES.md)
