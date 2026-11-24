@@ -48,7 +48,7 @@ for f in /dev/davinci? /dev/davinci_manager /dev/devmm_svm /dev/hisi_hdc; do
 done
 ```
 
-ECC 开关掉电保存 (见第 3 节), 常规重启后不需要重设; 但若发现显存变少、带宽变低或 BAR 变小, 优先怀疑 ECC 状态。
+ECC 开关掉电保存 (见第 3 节), 常规重启后不需要重设; 但若发现显存变少、带宽变低, 优先怀疑 ECC 状态。BAR 变小与 ECC 无关 (见第 3 节末尾), 怀疑需要整机断电冷启动才会恢复。
 
 ## 2. 新卡接入后 (一次性)
 
@@ -80,6 +80,7 @@ npu-smi set -t ecc-enable -i <card_id> -d 0  # 0 关 / 1 开, 重启生效
 
 - 每颗可见显存少 3GB (inline ECC 占 1/16)
 - 显存带宽低 ~10% (D2D 200 → 186.5 GB/s)
-- resource4 BAR 窗口从 8GB 缩成 1GB (疑似固件按 ECC 布局缩窗, 机制未确认), BAR MMIO 直访 GM 基本不可用
 
 纯推理场景 (权重只读、出错可重跑) 建议关闭; 对数据完整性敏感的场景自行权衡。
+
+**BAR 窗口大小与 ECC 无关 (旧结论已推翻)**: 曾在一张卡上观测到 ECC 开/关对应 resource4 1GB/8GB, 但 2026-11-24 在另一张已关 ECC 的卡上 (npu-smi 确认 False, 显存容量也是关 ECC 的数值) resource4 仍为 1GB。dmesg 显示 PCIe 枚举时卡固件就只申报了 1GB (无 BIOS 分配失败), 即 BAR 申报大小由卡固件在枚举前决定。官方文档 (Atlas 中心推理卡 npu-smi 命令参考, `p2p-mem-cfg` = "BAR 空间拷贝使能", 配置存在卡上, 默认使能, 改动需重启 OS 生效) 写明 300I Duo 的正常 BAR 布局为 16MB (Region 0) + 256MB (Region 2) + **8GB (Region 4)**。推测 BAR 申报大小在卡**上电 (冷启动)** 时定格, 热重启不重读 —— 该卡关 ECC 后只做过热重启; 待整机断电上电验证。BAR 为 1GB 时 BAR MMIO 直访 GM 基本不可用 (窗口映射不成立), 依赖方需准备 memcpy 回退。
